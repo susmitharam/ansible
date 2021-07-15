@@ -1,0 +1,39 @@
+# package
+# file
+# service
+---
+- hosts: remote
+  vars:
+    packagename: "nginx"
+  tasks:
+  - name: set nginx repo
+    apt_repository:
+      repo: ppa:nginx/stable  
+  - name: install nginx package
+    apt:
+      name: "{{ packagename }}"
+      state: latest
+  - name: create tutorial directory
+    file:
+      name: /var/www/tutorial
+      state: directory
+      mode: 0755 
+  - name: copy file index.html
+    copy:
+      src: index.html
+      dest:  /var/www/tutorial/index.html  
+    notify: restart the service 
+  - name: copy file tutorial
+    copy:
+      src: tutorial
+      dest: /etc/nginx/sites-enabled/tutorial   
+    notify: restart the service       
+  - name: start the service
+    service:
+      name: "{{ packagename }}"
+      state:  started
+  handlers:
+  - name: restart the service
+    service:
+      name: "{{ packagename }}"
+      state:  restarted
