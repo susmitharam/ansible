@@ -1,0 +1,11 @@
+all:
+  hosts:
+    node01.vytec.com:
+  children:
+    local:
+      hosts:
+        localhost:
+          ansible_connection: local
+    remote:            
+      hosts:
+        ip-172-31-24-1.us-east-2.compute.internal:
