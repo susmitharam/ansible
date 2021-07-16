@@ -12,11 +12,8 @@ pipeline {
                 
                 git 'https://github.com/vytec-app/ansible.git'
 
-                
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                ansiblePlaybook installation: 'ansible', inventory: 'inventory.yml', playbook: 'nginx.yml'
+           
             }
         }
     }
