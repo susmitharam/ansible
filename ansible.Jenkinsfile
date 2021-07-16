@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        tool name: 'ansible', type: 'org.jenkinsci.plugins.ansible.AnsibleInstallation'
-    }
-
     stages {
         stage('Build') {
             steps {
