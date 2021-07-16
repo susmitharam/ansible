@@ -1,0 +1,13 @@
+---
+- hosts: remote
+  vars:
+    packagename: "nginx"
+  tasks:
+  - name: install tree package
+    apt:
+      name: "{{ packagename }}"
+      state: latest
+  - name: start the service
+    service:
+      name: "{{ packagename }}"
+      state:  started 
