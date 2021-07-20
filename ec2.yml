@@ -1,0 +1,20 @@
+---
+- name: Ansible test
+  hosts: localhost
+  tasks:
+  - name: launching AWS instance using Ansible
+    ec2:
+      key_name: ohio
+      instance_type: t2.micro
+      image: ami-00399ec92321828f5
+      region: us-east-2
+      wait: yes
+      group: ansible
+      count: 1
+      vpc_subnet_id: subnet-4e0c4a34
+      assign_public_ip: yes
+      aws_access_key: AKIA2RE6L7EBQQUXSNWQ 
+      aws_secret_key: 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 
+      state: absent
+      instance_tags:
+        db: postgres
