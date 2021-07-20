@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  vars:
+    instance_ids:
+      - 'i-08e2f715d8f6f92e2'
+      - 'i-08d0776b8fa127554'
+      - 'i-04949c809ebfdbb5f'
+  tasks:
+  - local_action:
+      module: ec2
+      instance_tags:
+        db: postgres
+      state: absent
+      region: us-east-2
+      aws_access_key: AKIA2RE6L7EBQQUXSNWQ
+      aws_secret_key: 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
+      instance_ids: '{{ instance_ids }}'
